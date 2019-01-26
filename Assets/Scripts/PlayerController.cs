@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController 
 {
-    GameObject player;
+    public Transform transform;
     Camera camera;
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
@@ -13,22 +13,26 @@ public class PlayerController
     Vector3 horizontal, vertical;
     bool wasd;
 
+    PlayerModel playerModel;
+
     public PlayerController(string name, int number)
     {
         if(number == 1)
         {
             wasd = true;
-            player = GameObject.Instantiate(Resources.Load<GameObject>("PlayerOne"));
+            transform = GameObject.Instantiate(Resources.Load<GameObject>("PlayerOne")).transform;
         }
         else
         {
             wasd = false;
-            player = GameObject.Instantiate(Resources.Load<GameObject>("PlayerTwo"));
+            transform = GameObject.Instantiate(Resources.Load<GameObject>("PlayerTwo")).transform;
         }
 
-        rb = player.GetComponent<Rigidbody2D>();
-        spriteRenderer = player.GetComponent<SpriteRenderer>();
-        camera = player.transform.GetChild(0).GetComponent<Camera>();
+        rb = transform.GetComponent<Rigidbody2D>();
+        spriteRenderer = transform.GetComponent<SpriteRenderer>();
+        camera = transform.transform.GetChild(0).GetComponent<Camera>();
+
+        playerModel = transform.gameObject.AddComponent<PlayerModel>();
     }
 
     // Update is called once per frame
@@ -39,9 +43,9 @@ public class PlayerController
 
         isMoving = (x != 0 || y != 0);
 
-        if(isMoving)
+        if(isMoving || !transform.GetComponent<PlayerModel>().hitPlayer)
         {
-            Vector2 move = new Vector2(player.transform.position.x + x * speed * Time.deltaTime, player.transform.position.y + y * speed * Time.deltaTime);
+            Vector2 move = new Vector2(transform.position.x + x * speed * Time.deltaTime, transform.position.y + y * speed * Time.deltaTime);
             rb.MovePosition(move);
         }
     }

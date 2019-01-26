@@ -20,12 +20,12 @@ public class PlayerController
         if(number == 1)
         {
             wasd = true;
-            transform = GameObject.Instantiate(Resources.Load<GameObject>("PlayerOne")).transform;
+            transform = GameObject.Instantiate(Resources.Load<GameObject>("Sprites/PlayerOne")).transform;
         }
         else
         {
             wasd = false;
-            transform = GameObject.Instantiate(Resources.Load<GameObject>("PlayerTwo")).transform;
+            transform = GameObject.Instantiate(Resources.Load<GameObject>("Sprites/PlayerTwo")).transform;
         }
 
         rb = transform.GetComponent<Rigidbody2D>();

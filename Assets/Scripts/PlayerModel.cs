@@ -18,6 +18,5 @@ public class PlayerModel : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         hitPlayer = false;
-        //collision.transform.GetComponent<PlayerModel>().hitPlayer = false;
     }
 }

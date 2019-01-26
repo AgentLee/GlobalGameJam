@@ -27,6 +27,7 @@ public class HeartbeatController
         hb85 = Resources.Load<AudioClip>("Audio/Heartbeat85");
 
         audioSource.clip = hb;
+        audioSource.volume = 1f;
     }
 
     bool changed;
@@ -40,6 +41,7 @@ public class HeartbeatController
         }
         else
         {
+            // Need to lerp these
             if (distance < 1)
             {
                 audioSource.clip = hb85;

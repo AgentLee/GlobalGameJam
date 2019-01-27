@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController 
 {
     public Transform transform;
+    Animator animator;
     Camera camera;
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
@@ -36,6 +37,8 @@ public class PlayerController
         playerModel = transform.gameObject.AddComponent<PlayerModel>();
         particles = transform.Find("Particles");
         particles.gameObject.SetActive(false);
+
+        animator = transform.GetComponent<Animator>();
     }
 
     public void ActivateParticles()
@@ -56,6 +59,12 @@ public class PlayerController
         {
             Vector2 move = new Vector2(transform.position.x + x * speed * Time.deltaTime, transform.position.y + y * speed * Time.deltaTime);
             rb.MovePosition(move);
+
+            animator.SetBool("Idle", false);
+        }
+        else
+        {
+            animator.SetBool("Idle", true);
         }
     }
 }

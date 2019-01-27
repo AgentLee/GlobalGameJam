@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6232067112683776827}
   - component: {fileID: 511924580909110995}
   - component: {fileID: 2066122686487463935}
+  - component: {fileID: 3649465876976006905}
   m_Layer: 0
   m_Name: PlayerTwo
   m_TagString: Player
@@ -120,6 +121,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.03}
   serializedVersion: 2
   m_Radius: 0.03
+--- !u!95 &3649465876976006905
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699678088828870446}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b55f6dfedff1b0b43a81c3e55437211a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &835862971
 PrefabInstance:
   m_ObjectHideFlags: 0

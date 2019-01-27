@@ -13,6 +13,7 @@ public class PlayerController
     Vector3 horizontal, vertical;
     bool wasd;
 
+    Transform particles;
     PlayerModel playerModel;
 
     public PlayerController(string name, int number)
@@ -33,6 +34,14 @@ public class PlayerController
         camera = transform.transform.GetChild(0).GetComponent<Camera>();
 
         playerModel = transform.gameObject.AddComponent<PlayerModel>();
+        particles = transform.Find("Particles");
+        particles.gameObject.SetActive(false);
+    }
+
+    public void ActivateParticles()
+    {
+        particles.gameObject.SetActive(true);
+        particles.GetComponent<ParticleSystem>().Play();
     }
 
     // Update is called once per frame

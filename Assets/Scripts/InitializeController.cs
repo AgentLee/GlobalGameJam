@@ -38,24 +38,51 @@ public class SceneController
         mainAudio.transform.position = Vector3.zero;
         mainAudio.playOnAwake = false;
         mainAudio.volume = 0.02f;
+
+        hasWon = false;
+        victory = GameObject.Find("Victory").transform;
+        victory.gameObject.SetActive(false);
+
+        menu = GameObject.Find("Menu").transform;
+        menu.gameObject.SetActive(false);
     }
+
+    bool hasWon;
+    Transform victory;
+    bool showMenu;
+    Transform menu;
 
     public void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            showMenu = !showMenu;
+        }
+
+        ShowMenu();
+
         if(!mainAudio.isPlaying)
         {
             mainAudio.Play();
         }
 
-        if(playerOne.transform.GetComponent<PlayerModel>().hitPlayer || playerTwo.transform.GetComponent<PlayerModel>().hitPlayer)
+        if (playerOne.transform.GetComponent<PlayerModel>().hitPlayer || playerTwo.transform.GetComponent<PlayerModel>().hitPlayer)
         {
-            // Play particle effect here
-            Debug.Log("WIN");
+            hasWon = true;
+            playerOne.ActivateParticles();
+            playerTwo.ActivateParticles();
+
+            victory.gameObject.SetActive(true);
         }
 
         playerOne.Update();
         playerTwo.Update();
 
         heartbeatController.Update();
+    }
+
+    void ShowMenu()
+    {
+        menu.gameObject.SetActive(showMenu);
     }
 }
